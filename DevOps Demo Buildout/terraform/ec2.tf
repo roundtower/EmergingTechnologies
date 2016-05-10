@@ -1,3 +1,8 @@
+# terraform EC2 instance config
+
+###
+# Chef Server
+###
 resource "aws_instance" "chef" {
 	ami = "${var.ami}"
 	instance_type = "${var.instance_type}"
@@ -31,6 +36,9 @@ resource "aws_instance" "chef" {
 	}
 }
 
+###
+# Webserver Server
+###
 resource "aws_instance" "www" {
 	ami = "${var.ami}"
 	instance_type = "t2.micro"

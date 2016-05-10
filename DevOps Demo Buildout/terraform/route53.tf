@@ -1,4 +1,4 @@
-# terraform variables
+# terraform Route53
 
 resource "aws_route53_record" "chef" {
 	zone_id = "ZUUW6JGBSDPGF"
