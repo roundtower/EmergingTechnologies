@@ -36,3 +36,7 @@ variable "key_file" {
 variable "chef_version" {
 	default = "12.6.0-1"
 }
+
+resource "aws_iam_user" "s3_user" {
+    name = "s3_user"
+}

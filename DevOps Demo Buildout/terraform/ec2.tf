@@ -30,3 +30,44 @@ resource "aws_instance" "chef" {
 		]
 	}
 }
+
+resource "aws_instance" "www" {
+	ami = "${var.ami}"
+	instance_type = "t2.micro"
+	associate_public_ip_address = true
+	tags {
+		Name = "web01"
+	}
+
+	key_name = "${var.key_name}"
+
+	connection {
+		user = "ubuntu"
+		type = "ssh"
+		key_file = "${var.key_file}"
+		timeout = "2m"
+	}
+
+#	provisioner "chef" {
+#		attributes_json = <<EOF
+#		{
+#			"key": "value",
+#			"app": {
+#				"webcluster": {
+#					"nodes": [
+#						"web01"
+#					]
+#				}
+#			}
+#		}
+#		EOF
+#		environment = "_default"
+#		run_list = ["cookbook::recipe"]
+#		node_name = "web01"
+#		secret_key = "${file("../chef/encrypted_data_bag_secret")}"
+#		secret_url = "https://chef.roundtower.io/organizations/rttet"
+#		validation_client_name = "chef-validator"
+#		validation_key = "${file("../chef/chef-validator.pem")}"
+#		version = "${var.chef_version}"
+#	}
+}
